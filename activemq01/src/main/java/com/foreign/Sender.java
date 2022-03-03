@@ -14,9 +14,14 @@ import javax.jms.*;
 public class Sender {
     public static void main(String[] args) throws Exception {
         // 1. 建立工厂对象，
+//        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
+//                ActiveMQConnectionFactory.DEFAULT_USER,
+//                ActiveMQConnectionFactory.DEFAULT_PASSWORD,
+//                "tcp://172.16.13.147:61616"
+//        );
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
-                ActiveMQConnectionFactory.DEFAULT_USER,
-                ActiveMQConnectionFactory.DEFAULT_PASSWORD,
+                "admin",
+                "admin",
                 "tcp://172.16.13.147:61616"
         );
         //2 从工厂里拿一个连接
@@ -38,6 +43,9 @@ public class Sender {
             Thread.sleep(1000);
             producer.send(message);
         }
+        //开启事务的时候，需要commit，才会提交到mq
+        //connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+//        session.commit();
 
         // 关闭连接
         connection.close();

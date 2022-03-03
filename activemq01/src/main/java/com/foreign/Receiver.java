@@ -15,8 +15,10 @@ public class Receiver {
     public static void main(String[] args) throws Exception {
         // 1. 建立工厂对象，
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
-                ActiveMQConnectionFactory.DEFAULT_USER,
-                ActiveMQConnectionFactory.DEFAULT_PASSWORD,
+//                ActiveMQConnectionFactory.DEFAULT_USER,
+//                ActiveMQConnectionFactory.DEFAULT_PASSWORD,
+                "admin",
+                "admin",
                 "tcp://172.16.13.147:61616"
         );
         //2 从工厂里拿一个连接
