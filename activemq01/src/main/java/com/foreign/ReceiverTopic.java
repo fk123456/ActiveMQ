@@ -11,7 +11,7 @@ import javax.jms.*;
  * @date: 2022/3/3 5:53 下午
  * <p>
  */
-public class Receiver {
+public class ReceiverTopic {
     public static void main(String[] args) throws Exception {
         // 1. 建立工厂对象，
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
@@ -27,10 +27,11 @@ public class Receiver {
         //3 从连接中获取Session(会话)
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         // 从会话中获取目的地(Destination)消费者会从这个目的地取消息
-        Queue queue = session.createQueue("user");
+        Destination topic = session.createTopic("user");
 
-        //从会话中创建消息提供者
-        MessageConsumer consumer = session.createConsumer(queue);
+
+        //从会话中创建消息消费者
+        MessageConsumer consumer = session.createConsumer(topic);
 
         //从会话中创建文本消息(也可以创建其它类型的消息体)
         while (true) {
