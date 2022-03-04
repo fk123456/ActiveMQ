@@ -1,0 +1,19 @@
+server:
+  port: 8898
+spring:
+  activemq:
+    broker-url: tcp://172.16.13.147:61616
+    user: admin
+    password: admin
+
+    pool:
+      enabled: true
+      #连接池最大连接数
+      max-connections: 5
+      #空闲的连接过期时间，默认为30秒
+      idle-timeout: 0
+    packages:
+      trust-all: true
+  jms:
+    #配置支持pub/sub模式
+    pub-sub-domain: true
